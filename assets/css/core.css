@@ -1,0 +1,16 @@
+.hidden-to-fade {
+    opacity: 0;
+    display: none
+}
+
+.clickable {
+    cursor: pointer
+}
+
+.core-hidden {
+    display: none
+}
+
+.full-height {
+    height: 100vh !important;
+}
