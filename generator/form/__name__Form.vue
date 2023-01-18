@@ -59,7 +59,6 @@
           <i
             class="fas fa-exclamation-circle ms-1 fs-7"
             data-bs-toggle="tooltip"
-            title="Country of origination"
           ></i>
         </label>
 
@@ -177,8 +176,8 @@ const handleSubmit = async () => {
 const setForm = () => {
   //API WARNING
   //SELECTED ITEM COMES WITH API ATTRIBUTE NAMES
-  form_state.name = store.items.__name__(snakeCase).selected_item.name;
-  form_state.is_active = store.items.__name__(snakeCase).selected_item.is_active;
+  form_state.description = 'Descripcion del __name__ '+store.items.__name__(snakeCase).selected_item.id;
+  
 };
 
 onMounted(() => {

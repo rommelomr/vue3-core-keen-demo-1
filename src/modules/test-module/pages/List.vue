@@ -588,7 +588,9 @@
             <div style="float: right">
               <Paginator
                 v-if="
-                  Math.ceil(store.items.test_module.paginator.total_pages) > 1
+                  Math.ceil(
+                    store.items.test_module.paginator.total_pages
+                  ) > 1
                 "
                 :key="store.items.test_module.paginator.key"
                 @onChangePage="onChangePage"
@@ -596,11 +598,17 @@
                   store.items.test_module.paginator.items_per_page
                 "
                 :max-buttons="5"
-                :total-items="store.items.test_module.paginator.total_items"
-                :total-pages="
-                  Math.ceil(store.items.test_module.paginator.total_pages)
+                :total-items="
+                  store.items.test_module.paginator.total_items
                 "
-                :current-page="store.items.test_module.paginator.current_page"
+                :total-pages="
+                  Math.ceil(
+                    store.items.test_module.paginator.total_pages
+                  )
+                "
+                :current-page="
+                  store.items.test_module.paginator.current_page
+                "
               />
             </div>
           </div>
@@ -612,70 +620,19 @@
       </div>
       <!--end: Card Body-->
     </div>
-    <!--begin::Modals-->
-    <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" tabindex="-1" aria-hidden="true">
-      <!--begin::Modal dialog-->
-      <div class="modal-dialog modal-dialog-centered mw-950px">
-        <!--begin::Modal content-->
-        <div class="modal-content">
-          <!--begin::Form CORE-HIDDEN-->
-
-          <!--end::Form-->
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="main-modal"
-      tabindex="-1"
-      data-bs-backdrop="static"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+    <VueHeaderModal
+      @onClose="closeTestModuleModal()"
+      :show="store.modal != ''"
+      :title="store.modal_title"
+      :is-static="true"
+      :scrollable="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              {{ store.modal_title }}
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              @click="closeTestModuleModal()"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <TestModuleForm
-              v-if="store.forms.create_update_test_module != ''"
-            />
-          </div>
-          <!-- <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        @click="store.closeModal()"
-                      >
-                        Cerrar
-                      </button>
-                      <button
-                        v-if="store.form_mode != 'see'"
-                        @click="handleSubmit()"
-                        type="button"
-                        class="btn btn-primary"
-                      >
-                        Guardar
-                      </button>
-                    </div> -->
-        </div>
-      </div>
+      <template #body>
+        <TestModuleForm
+        v-if="store.forms.create_update_test_module != ''" />
+      </template>
+    </VueHeaderModal>
 
-      <!-- <TestModuleForm v-show="store.modal != ''" /> -->
-    </div>
-    <!--end::Modal - Customers - Add-->
     <!--begin::Modal - Adjust Balance-->
     <div
       class="modal fade"
@@ -915,8 +872,12 @@
 import useTestModuleStore from "../stores/index.js";
 import TestModuleForm from "./TestModuleForm.vue";
 import Paginator from "@/components/paginator/Paginator.vue";
+import { parseDate } from "@/utils/Functions.js";
 import { inject, onMounted, ref } from "vue-demi";
 import { confirm } from "@/utils/Swals.js";
+
+const emit = defineEmits(["onDisplayPage"]);
+
 const swal = inject("$swal");
 const store = useTestModuleStore();
 

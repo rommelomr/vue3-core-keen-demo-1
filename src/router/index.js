@@ -5,7 +5,7 @@ import useAuthStore from '@/modules/auth/store.js'
 import { DEFAULT_HOMES } from '@/utils/Consts.js'
 import AuthRouter from '../modules/auth/router.js'
 
-import CategoriesRouter from '../modules/categories/routes/index.js'
+// import CategoriesRouter from '../modules/categories/routes/index.js'
 import TestModuleRouter from '../modules/test-module/routes/index.js'
 import Calendar from '../modules/calendar/Main.vue'
 import Profile from '../modules/auth/Profile.vue'
@@ -17,7 +17,7 @@ const routes = [
         component: VerticalMenu,
         children: [
             ...TestModuleRouter,
-            ...CategoriesRouter,
+            // ...CategoriesRouter,
 
             {
                 path: "calendar",

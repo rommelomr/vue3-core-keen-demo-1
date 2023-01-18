@@ -9,7 +9,7 @@ import globalComponents from './components/index.js';
 import Footer from './footers/Footer.vue'
 import 'notyf/notyf.min.css'
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+import 'bootstrap/dist/js/bootstrap.bundle.js'
 const pinia = createPinia()
 const app = createApp(App)
 

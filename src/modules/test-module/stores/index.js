@@ -107,6 +107,9 @@ export default defineStore({
 		switch(response.status) {
 			case 200: {
 		this.setTestModuleList()
+		this.setModal('')
+		this.setModalTitle('')
+		this.setFormMode('create_updatetest_module', '')
 		notyf.success('============== creada exitosamente')
 		return true
 		break
@@ -130,6 +133,9 @@ async updateTestModule(form, id) {
 	switch (response.status) {
 		case 200: {
 			this.setTestModuleList()
+			this.setModal('')
+			this.setModalTitle('')
+			this.setFormMode('create_updatetest_module', '')
 			notyf.success('============ editada exitosamente')
 
 			break
@@ -147,6 +153,10 @@ async deleteTestModule(id) {
 	let notyf = useNotyf()
 	switch (response.status) {
 		case 200: {
+			this.setPagination({
+				paginator: 'test_module',
+				current_page: 1
+			})
 			this.setTestModuleList()
 			notyf.success('============ editada exitosamente')
 

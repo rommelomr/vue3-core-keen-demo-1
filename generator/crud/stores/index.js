@@ -107,6 +107,9 @@ export default defineStore({
 		switch(response.status) {
 			case 200: {
 		this.set__name__(pascalCase)List()
+		this.setModal('')
+		this.setModalTitle('')
+		this.setFormMode('create_update__name__(snakeCase)', '')
 		notyf.success('============== creada exitosamente')
 		return true
 		break
@@ -130,6 +133,9 @@ async update__name__(pascalCase)(form, id) {
 	switch (response.status) {
 		case 200: {
 			this.set__name__(pascalCase)List()
+			this.setModal('')
+			this.setModalTitle('')
+			this.setFormMode('create_update__name__(snakeCase)', '')
 			notyf.success('============ editada exitosamente')
 
 			break
@@ -147,6 +153,10 @@ async delete__name__(pascalCase)(id) {
 	let notyf = useNotyf()
 	switch (response.status) {
 		case 200: {
+			this.setPagination({
+				paginator: '__name__(snakeCase)',
+				current_page: 1
+			})
 			this.set__name__(pascalCase)List()
 			notyf.success('============ editada exitosamente')
 

@@ -647,9 +647,8 @@
           </div>
           <div class="modal-body">
             <pre>{{ store.forms }}</pre>
-            <CreateUpdateForm
-              v-if="store.forms.create_update___name__(snakeCase) != ''"
-            />
+            <__name__(pascalCase)Form
+            v-if="store.forms.create_update___name__(snakeCase) != ''" />
           </div>
           <!-- <div class="modal-footer">
                       <button
@@ -672,7 +671,7 @@
         </div>
       </div>
 
-      <!-- <CreateUpdateForm v-show="store.modal != ''" /> -->
+      <!-- <__name__(pascalCase)Form v-show="store.modal != ''" /> -->
     </div>
     <!--end::Modal - Customers - Add-->
     <!--begin::Modal - Adjust Balance-->
@@ -915,6 +914,7 @@ import use__name__(pascalCase)Store from "../stores/index.js";
 import __name__(pascalCase)Form from "../pages/__name__(pascalCase)Form.vue";
 import Paginator from "@/components/paginator/Paginator.vue";
 import { inject, onMounted, ref } from "vue-demi";
+import { parseDate } from "@/utils/Functions.js";
 import { confirm } from "@/utils/Swals.js";
 const swal = inject("$swal");
 const store = use__name__(pascalCase)Store();

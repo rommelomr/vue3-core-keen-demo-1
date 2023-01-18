@@ -149,6 +149,10 @@ async delete__name__(pascalCase)(id) {
 	let notyf = useNotyf()
 	switch (response.status) {
 		case 200: {
+			this.setPagination({
+				paginator: '__name__(snakeCase)',
+				current_page: 1
+			})
 			this.set__name__(pascalCase)List()
 			notyf.success('============ editada exitosamente')
 

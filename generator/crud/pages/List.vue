@@ -620,69 +620,19 @@
       </div>
       <!--end: Card Body-->
     </div>
-    <!--begin::Modals-->
-    <!--begin::Modal - Customers - Add-->
-    <div class="modal fade" tabindex="-1" aria-hidden="true">
-      <!--begin::Modal dialog-->
-      <div class="modal-dialog modal-dialog-centered mw-950px">
-        <!--begin::Modal content-->
-        <div class="modal-content">
-          <!--begin::Form CORE-HIDDEN-->
-
-          <!--end::Form-->
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="main-modal"
-      tabindex="-1"
-      data-bs-backdrop="static"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+    <VueHeaderModal
+      @onClose="close__name__(pascalCase)Modal()"
+      :show="store.modal != ''"
+      :title="store.modal_title"
+      :is-static="true"
+      :scrollable="true"
     >
-      <div class="modal-dialog modal-dialog-scrollable modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              {{ store.modal_title }}
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              @click="close__name__(pascalCase)Modal()"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <__name__(pascalCase)Form v-if="
-            store.forms.create_update___name__(snakeCase) != '' " />
-          </div>
-          <!-- <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                        @click="store.closeModal()"
-                      >
-                        Cerrar
-                      </button>
-                      <button
-                        v-if="store.form_mode != 'see'"
-                        @click="handleSubmit()"
-                        type="button"
-                        class="btn btn-primary"
-                      >
-                        Guardar
-                      </button>
-                    </div> -->
-        </div>
-      </div>
+      <template #body>
+        <__name__(pascalCase)Form
+        v-if="store.forms.create_update___name__(snakeCase) != ''" />
+      </template>
+    </VueHeaderModal>
 
-      <!-- <__name__(pascalCase)Form v-show="store.modal != ''" /> -->
-    </div>
-    <!--end::Modal - Customers - Add-->
     <!--begin::Modal - Adjust Balance-->
     <div
       class="modal fade"
@@ -922,8 +872,12 @@
 import use__name__(pascalCase)Store from "../stores/index.js";
 import __name__(pascalCase)Form from "./__name__(pascalCase)Form.vue";
 import Paginator from "@/components/paginator/Paginator.vue";
+import { parseDate } from "@/utils/Functions.js";
 import { inject, onMounted, ref } from "vue-demi";
 import { confirm } from "@/utils/Swals.js";
+
+const emit = defineEmits(["onDisplayPage"]);
+
 const swal = inject("$swal");
 const store = use__name__(pascalCase)Store();
 
